@@ -5,6 +5,8 @@ public:
     TreeNode();
     ~TreeNode();
 
+    void insert(int value);
+    void deleteNode(TreeNode);
 
 
 private:
