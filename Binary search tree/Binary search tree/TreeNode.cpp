@@ -11,12 +11,14 @@ TreeNode::~TreeNode()
 {
 }
 
-void TreeNode::insert(int value)
+void TreeNode::insertNode(int value)
 {
+
 }
 
 void TreeNode::deleteNode(TreeNode)
 {
+
 }
 
 
