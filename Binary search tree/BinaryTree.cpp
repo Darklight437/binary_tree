@@ -48,7 +48,12 @@ void BinaryTree::insert(int Value)
             return;
         }
     }
-
+    //set newnode's parent to tempnode
+    
+    if (newNode->getData < tempNode->getData)
+    {
+        tempNode->getLeft = newNode;
+    }
     
 
 
