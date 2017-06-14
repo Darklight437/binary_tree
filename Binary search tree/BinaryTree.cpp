@@ -87,6 +87,10 @@ bool BinaryTree::findNode(int SearchValue, TreePtr & outNode, TreePtr & outParen
         {
             currentNode = currentNode->getLeft();
         }
+        else
+        {
+            currentNode = currentNode->getRight();
+        }
     }
 
 
