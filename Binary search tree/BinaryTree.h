@@ -21,9 +21,9 @@ public:
 
 private:
     //find the node with the specified value
-    bool findNode(int a_nSearchValue, TreeNode** ppOutNode, TreeNode** ppOutParent);
+    bool findNode(int a_nSearchValue, TreePtr & ppOutNode, TreePtr & ppOutParent);
 
     //the root node
-    TreeNode* m_pRoot;
+    TreePtr m_pRoot;
 };
 

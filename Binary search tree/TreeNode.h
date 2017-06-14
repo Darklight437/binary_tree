@@ -1,9 +1,15 @@
 #pragma once
+
+typedef TreeNode*   TreePtr;
+
+
+
 class TreeNode
 {
 public:
 
-
+    
+    
     TreeNode(int value);
     ~TreeNode();
 
@@ -12,17 +18,17 @@ public:
     bool hasLeft() { return (m_left != nullptr);}
     bool hasRight() { return (m_right != nullptr);}
     int getData() { return m_value; }
-    TreeNode* getLeft() { return m_left; }
-    TreeNode* getRight() { return m_right; }
+    TreePtr getLeft() { return m_left; }
+    TreePtr getRight() { return m_right; }
     void setData(int value) { m_value = value; }
-    void setLeft(TreeNode* node) { m_left = node; }
-    void setRight(TreeNode* node) { m_right = node; }
+    void setLeft(TreePtr node) { m_left = node; }
+    void setRight(TreePtr node) { m_right = node; }
 
 
 private:
-    TreeNode* m_parent;
-    TreeNode* m_left;
-    TreeNode* m_right;
+    TreePtr m_parent;
+    TreePtr m_left;
+    TreePtr m_right;
     int m_value;
 
 

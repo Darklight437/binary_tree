@@ -27,9 +27,9 @@ bool BinaryTree::isEmpty() const
 
 void BinaryTree::insert(int Value)
 {
-    TreeNode* newNode = new TreeNode(Value); 
-    TreeNode* currentNode = m_pRoot;
-    TreeNode* tempNode;
+    TreePtr newNode = new TreeNode(Value); 
+    TreePtr currentNode = m_pRoot;
+    TreePtr tempNode;
     if (m_pRoot == nullptr)
     {
         m_pRoot = newNode;
@@ -54,6 +54,10 @@ void BinaryTree::insert(int Value)
     {
         tempNode->getLeft = newNode;
     }
+    else
+    {
+        tempNode->getRight = newNode;
+    }
     
 
 
@@ -69,7 +73,17 @@ TreeNode * BinaryTree::find(int Value)
     return nullptr;
 }
 
-bool BinaryTree::findNode(int a_nSearchValue, TreeNode ** ppOutNode, TreeNode ** ppOutParent)
+bool BinaryTree::findNode(int a_nSearchValue, TreePtr & outNode, TreePtr & outParent)
 {
+    TreePtr currentNode;
+    while (currentNode != nullptr)    
+    {
+        if (a_nSearchValue == currentNode->getData)
+        {
+
+        }
+    }
+
+
     return false;
 }
