@@ -73,12 +73,17 @@ TreeNode * BinaryTree::find(int Value)
     return nullptr;
 }
 
-bool BinaryTree::findNode(int a_nSearchValue, TreePtr & outNode, TreePtr & outParent)
+bool BinaryTree::findNode(int SearchValue, TreePtr & outNode, TreePtr & outParent)
 {
     TreePtr currentNode;
     while (currentNode != nullptr)    
     {
-        if (a_nSearchValue == currentNode->getData)
+        if (SearchValue == currentNode->getData)
+        {
+            outNode = currentNode;
+            outParent = currentNode->getParent();
+        }
+        else if(SearchValue < currentNode->getData)
         {
 
         }

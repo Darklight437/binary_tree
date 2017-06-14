@@ -20,6 +20,7 @@ public:
     int getData() { return m_value; }
     TreePtr getLeft() { return m_left; }
     TreePtr getRight() { return m_right; }
+    TreePtr getParent() { return m_parent; }
     void setData(int value) { m_value = value; }
     void setLeft(TreePtr node) { m_left = node; }
     void setRight(TreePtr node) { m_right = node; }
