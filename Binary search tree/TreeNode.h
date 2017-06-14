@@ -20,7 +20,7 @@ public:
 
 
 private:
-
+    TreeNode* m_parent;
     TreeNode* m_left;
     TreeNode* m_right;
     int m_value;
