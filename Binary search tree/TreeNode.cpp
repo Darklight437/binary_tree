@@ -2,7 +2,7 @@
 
 
 
-TreeNode::TreeNode()
+TreeNode::TreeNode(int value)
 {
 }
 
