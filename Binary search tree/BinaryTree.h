@@ -12,11 +12,11 @@ public:
     bool isEmpty() const;
 
     //places new node based on binary system
-    void insert(int a_nValue);
+    void insert(int Value);
     //removes and reconnects relevant nodes
-    void remove(int a_nValue);
+    void remove(int Value);
     //finds nodes with specified value
-    TreeNode* find(int a_nValue);
+    TreeNode* find(int Value);
 
 
 private:
