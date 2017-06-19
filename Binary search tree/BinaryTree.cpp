@@ -67,9 +67,9 @@ void BinaryTree::remove(int Value)
 {
     TreePtr parentNode;
     TreePtr deletNode;
-    TreePtr searchNode;
+    //TreePtr searchNode;
     findNode(Value, deletNode, parentNode);
-    //if the 
+    //no child case
     if (deletNode->getRight == nullptr && deletNode-> getLeft == nullptr)
     {
         //set the correct side pointer to null
@@ -77,9 +77,38 @@ void BinaryTree::remove(int Value)
         delete deletNode;
     }
 
+
+    //one child case
+    //sick XOR operator here for one child case
     if (deletNode->getLeft() != nullptr ^ deletNode->getRight() != nullptr)
     {
+        if (deletNode == m_Root)
+        {
+            //make the child node the root and delete the current root
+            (deletNode->getLeft() != nullptr) ? (m_Root = deletNode->getRight()) : (m_Root = deletNode->getLeft());
+            delete deletNode;
+            
+        }
+        else
+        {
 
+            //find out where the child of deletNode is
+            //which side of parent is delet on
+            if (parentNode->getRight() == deletNode)
+            {
+
+                //get the relevant pointer to deletNode
+                
+                //set pointer to deletNode to child instead and delet deletNode
+            }
+            else
+            {
+
+            }
+
+        }
+
+        
     }
 
 }
