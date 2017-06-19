@@ -69,23 +69,19 @@ void BinaryTree::remove(int Value)
     TreePtr deletNode;
     TreePtr searchNode;
     findNode(Value, deletNode, parentNode);
-    if (deletNode->hasRight == true)
+    //if the 
+    if (deletNode->getRight == nullptr && deletNode-> getLeft == nullptr)
     {
-                //find the minimum value in the right branch 
-        //by iterating down the LEFT branch
-        //of the current (deletnode)'s right child
-        //unitll there are no more nodes
-
-        searchNode = deletNode->getRight();
-        while (searchNode->m_left != nullptr)
-        {
-            searchNode = searchNode->getLeft();
-        }
+        //set the correct side pointer to null
+        (parentNode->getLeft() == deletNode) ? (parentNode->setLeft(nullptr)) : (parentNode->setRight(nullptr));
+        delete deletNode;
     }
-    else
+
+    if (deletNode->getLeft() != nullptr ^ deletNode->getRight() != nullptr)
     {
 
     }
+
 }
 
 TreeNode * BinaryTree::find(int Value)
