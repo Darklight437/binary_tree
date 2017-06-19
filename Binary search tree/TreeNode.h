@@ -15,16 +15,16 @@ public:
 
 
     //bool isRightNode() { return m_rightNode; }
-    bool hasLeft() { return (m_left != nullptr);}
-    bool hasRight() { return (m_right != nullptr);}
-    int getData() { return m_value; }
-    TreePtr getLeft() { return m_left; }
-    TreePtr getRight() { return m_right; }
-    TreePtr getParent() { return m_parent; }
-    void setData(int value) { m_value = value; }
-    void setLeft(TreePtr node) { m_left = node; }
-    void setRight(TreePtr node) { m_right = node; }
-    void setParent(TreePtr node) { m_parent = node; }
+    bool hasLeft();
+    bool hasRight();
+    int getData();
+    TreePtr getLeft();
+    TreePtr getRight();
+    TreePtr getParent();
+    void setData(int value);
+    void setLeft(TreePtr node);
+    void setRight(TreePtr node);
+    void setParent(TreePtr node);
 
 private:
     TreePtr m_parent;

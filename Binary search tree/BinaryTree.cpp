@@ -91,24 +91,33 @@ void BinaryTree::remove(int Value)
         }
         else
         {
-
+            TreePtr childNode;
             //find out where the child of deletNode is
+            (deletNode->getLeft() != nullptr) ? (childNode = deletNode->getLeft) : (childNode = deletNode->getRight());
             //which side of parent is delet on
             if (parentNode->getRight() == deletNode)
             {
-
-                //get the relevant pointer to deletNode
-                
-                //set pointer to deletNode to child instead and delet deletNode
+                parentNode->setRight(childNode);
+                delete deletNode;
             }
             else
             {
-
+                parentNode->setLeft(childNode);
+                delete deletNode;
             }
 
         }
 
         
+    }
+
+    //2 childeren case
+    if (deletNode->getLeft() != nullptr && deletNode->getRight() != nullptr)
+    {
+        //TODO
+        //do that whole iterator thing to find the lowest right hand node if there is one
+        //right hand node's left branch until no more left branches (for looped)
+        //
     }
 
 }
