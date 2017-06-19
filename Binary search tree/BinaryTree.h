@@ -24,6 +24,6 @@ private:
     bool findNode(int SearchValue, TreePtr & ppOutNode, TreePtr & ppOutParent);
 
     //the root node
-    TreePtr m_pRoot;
+    TreePtr m_Root;
 };
 

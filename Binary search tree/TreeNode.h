@@ -14,7 +14,7 @@ public:
     ~TreeNode();
 
 
-
+    bool isRightNode() { return m_rightNode; }
     bool hasLeft() { return (m_left != nullptr);}
     bool hasRight() { return (m_right != nullptr);}
     int getData() { return m_value; }
@@ -31,7 +31,7 @@ private:
     TreePtr m_left;
     TreePtr m_right;
     int m_value;
-
+    bool m_rightNode;
 
 };
 

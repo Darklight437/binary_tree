@@ -4,7 +4,7 @@
 
 BinaryTree::BinaryTree()
 {
-    m_pRoot = nullptr;
+    m_Root = nullptr;
 }
 
 
@@ -15,7 +15,7 @@ BinaryTree::~BinaryTree()
 
 bool BinaryTree::isEmpty() const
 {
-    if (m_pRoot == nullptr)
+    if (m_Root == nullptr)
     {
         return true;
     }
@@ -28,11 +28,11 @@ bool BinaryTree::isEmpty() const
 void BinaryTree::insert(int Value)
 {
     TreePtr newNode = new TreeNode(Value); 
-    TreePtr currentNode = m_pRoot;
+    TreePtr currentNode = m_Root;
     TreePtr tempNode;
-    if (m_pRoot == nullptr)
+    if (m_Root == nullptr)
     {
-        m_pRoot = newNode;
+        m_Root = newNode;
     }
     while (currentNode != nullptr)
     {
@@ -65,17 +65,39 @@ void BinaryTree::insert(int Value)
 
 void BinaryTree::remove(int Value)
 {
+    TreePtr parentNode;
+    TreePtr deletNode;
+    TreePtr searchNode;
+    findNode(Value, deletNode, parentNode);
+    if (deletNode->hasRight == true)
+    {
+                //find the minimum value in the right branch 
+        //by iterating down the LEFT branch
+        //of the current (deletnode)'s right child
+        //unitll there are no more nodes
 
+        searchNode = deletNode->getRight();
+        while (searchNode->m_left != nullptr)
+        {
+            searchNode = searchNode->getLeft();
+        }
+    }
+    else
+    {
+
+    }
 }
 
 TreeNode * BinaryTree::find(int Value)
 {
+    //panic at the disco
     return nullptr;
 }
 
 bool BinaryTree::findNode(int SearchValue, TreePtr & outNode, TreePtr & outParent)
 {
     TreePtr currentNode;
+    //search the tree for an object
     while (currentNode != nullptr)    
     {
         if (SearchValue == currentNode->getData)
