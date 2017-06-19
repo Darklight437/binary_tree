@@ -16,7 +16,7 @@ public:
     //removes and reconnects relevant nodes
     void remove(int Value);
     //finds nodes with specified value
-    TreeNode* find(int Value);
+    TreePtr find(int Value);
 
 
 private:

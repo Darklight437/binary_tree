@@ -1,7 +1,7 @@
 #pragma once
+class TreeNode;
 
-typedef TreeNode*   TreePtr;
-
+typedef TreeNode* TreePtr;
 
 
 class TreeNode
@@ -11,6 +11,7 @@ public:
     
     
     TreeNode(int value);
+    TreeNode();
     ~TreeNode();
 
 
@@ -35,4 +36,3 @@ private:
     //bool m_rightNode;
 
 };
-
