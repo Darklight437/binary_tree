@@ -33,20 +33,29 @@ void BinaryTree::insert(int Value)
     if (m_Root == nullptr)
     {
         m_Root = newNode;
+        return;
     }
-    while (currentNode != nullptr)
+    while (currentNode != tempNode)
     {
-        //if the value is less than the value of the current node
-        (newNode->getData() < currentNode->getData()) ? (currentNode = currentNode->getLeft()) : (currentNode = currentNode->getRight());
-        if (currentNode->getLeft() == nullptr || currentNode->getRight() == nullptr)
-        {
-            tempNode = currentNode;
-        }
+
+
         if (newNode->getData() == currentNode->getData())
         {
             //the value is already in the tree exit out
             return;
         }
+
+
+        //if the value is less than the value of the current node go left else go right
+        (newNode->getData() < currentNode->getData()) ? (currentNode = currentNode->getLeft()) : (currentNode = currentNode->getRight());
+
+
+        //if at the end of the tree
+        if (currentNode->getLeft() == nullptr || currentNode->getRight() == nullptr)
+        {
+            tempNode = currentNode;
+        }
+        
     }
     //set newnode's parent to tempnode
     
