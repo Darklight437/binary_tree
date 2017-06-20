@@ -110,6 +110,10 @@ void BinaryTree::remove(int Value)
     //no child case
         if (deletNode->getRight() == nullptr && deletNode-> getLeft() == nullptr)
         {
+            if (m_Root == deletNode)
+            {
+                delete deletNode;
+            }
         //set the correct side pointer to null
         (parentNode->getLeft() == deletNode) ? (parentNode->setLeft(nullptr)) : (parentNode->setRight(nullptr));
         delete deletNode;
@@ -124,7 +128,7 @@ void BinaryTree::remove(int Value)
             if (deletNode == m_Root)
             {
                 //make the child node the root and delete the current root
-                (deletNode->getLeft() != nullptr) ? (m_Root = deletNode->getRight()) : (m_Root = deletNode->getLeft());
+                (deletNode->getLeft() != nullptr) ? (m_Root = deletNode->getLeft()) : (m_Root = deletNode->getRight());
                 m_Root->setParent(nullptr);
                 delete deletNode;
                 return;
@@ -180,16 +184,19 @@ void BinaryTree::remove(int Value)
                 if (searchparent->getRight() == deletNode)
                 {
                     searchparent->setRight(childNode);
+                    childNode->setParent(searchparent);
                     delete searchNode;
                     return;
                 }
                 else
                 {
                     searchparent->setLeft(childNode);
+                    childNode->setParent(searchparent);
                     delete searchNode;
                     return;
                 }
             }
+            //no child node
             else
             {
                 searchparent = searchNode->getParent();
@@ -201,7 +208,7 @@ void BinaryTree::remove(int Value)
         }
     }
 }
-
+//this literally does nothing don't use
 TreeNode * BinaryTree::find(int Value)
 {
     //panic at the disco
