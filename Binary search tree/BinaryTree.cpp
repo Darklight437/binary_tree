@@ -113,6 +113,8 @@ void BinaryTree::remove(int Value)
             if (m_Root == deletNode)
             {
                 delete deletNode;
+                m_Root = nullptr;
+                return;
             }
         //set the correct side pointer to null
         (parentNode->getLeft() == deletNode) ? (parentNode->setLeft(nullptr)) : (parentNode->setRight(nullptr));
