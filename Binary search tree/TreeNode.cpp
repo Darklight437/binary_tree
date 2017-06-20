@@ -5,11 +5,16 @@
 TreeNode::TreeNode(int value)
 {
     m_value = value;
+    m_parent = nullptr;
+    m_left = nullptr;
+    m_right = nullptr;
 }
 
 TreeNode::TreeNode()
 {
-
+    m_parent = nullptr;
+    m_left = nullptr;
+    m_right = nullptr;
 }
 
 TreeNode::~TreeNode()

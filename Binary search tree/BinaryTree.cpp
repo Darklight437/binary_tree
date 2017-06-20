@@ -29,13 +29,13 @@ void BinaryTree::insert(int Value)
 {
     TreePtr newNode = new TreeNode(Value); 
     TreePtr currentNode = m_Root;
-    TreePtr tempNode;
+    TreePtr foundNode = nullptr;
     if (m_Root == nullptr)
     {
         m_Root = newNode;
         return;
     }
-    while (currentNode != tempNode)
+    while (currentNode != foundNode)
     {
 
 
@@ -47,57 +47,90 @@ void BinaryTree::insert(int Value)
 
 
         //if the value is less than the value of the current node go left else go right
-        (newNode->getData() < currentNode->getData()) ? (currentNode = currentNode->getLeft()) : (currentNode = currentNode->getRight());
-
-
-        //if at the end of the tree
-        if (currentNode->getLeft() == nullptr || currentNode->getRight() == nullptr)
+        
+       
+        if (newNode->getData()< currentNode->getData())
         {
-            tempNode = currentNode;
+            
+            if (currentNode->getLeft() != nullptr)
+            {
+                currentNode = currentNode->getLeft();
+            }
+            else 
+            {
+                foundNode = currentNode;
+            }
         }
+        else
+        {
+            if (currentNode->getRight() != nullptr)
+            {
+                currentNode = currentNode->getRight();
+            }
+            else
+            {
+                foundNode = currentNode;
+                
+            }
+        }
+
+
+       
         
     }
-    //set newnode's parent to tempnode
+    //set newnode's parent to foundNode
     
-    if (newNode->getData() < tempNode->getData())
+    if (newNode->getData() < foundNode->getData())
     {
-        tempNode->setLeft(newNode);
+        foundNode->setLeft(newNode);
+        newNode->setParent(foundNode);
     }
     else
     {
-        tempNode->setRight(newNode);
+        foundNode->setRight(newNode);
+        newNode->setParent(foundNode);
     }
     
 
 
 }
 
+
+//TODO make sure all connected pointers are cleaned up correctly
 void BinaryTree::remove(int Value)
 {
     TreePtr parentNode;
     TreePtr deletNode;
     TreePtr searchNode;
-    findNode(Value, deletNode, parentNode);
-    //no child case
-    if (deletNode->getRight() == nullptr && deletNode-> getLeft() == nullptr)
+    
+    if (findNode(Value, deletNode, parentNode) == true)
     {
+
+    
+    //no child case
+        if (deletNode->getRight() == nullptr && deletNode-> getLeft() == nullptr)
+        {
         //set the correct side pointer to null
         (parentNode->getLeft() == deletNode) ? (parentNode->setLeft(nullptr)) : (parentNode->setRight(nullptr));
         delete deletNode;
-    }
-
-
-    //one child case
-    //sick XOR operator here for one child case
-    if ((deletNode->getLeft() != nullptr) ^ (deletNode->getRight() != nullptr))
-    {
-        if (deletNode == m_Root)
-        {
-            //make the child node the root and delete the current root
-            (deletNode->getLeft() != nullptr) ? (m_Root = deletNode->getRight()) : (m_Root = deletNode->getLeft());
-            delete deletNode;
-            
+        //pointers == good
         }
+
+
+        //one child case
+        //sick XOR operator here for one child case
+        if ((deletNode->getLeft() != nullptr) ^ (deletNode->getRight() != nullptr))
+        {
+            if (deletNode == m_Root)
+            {
+                //make the child node the root and delete the current root
+                (deletNode->getLeft() != nullptr) ? (m_Root = deletNode->getRight()) : (m_Root = deletNode->getLeft());
+                m_Root->setParent(nullptr);
+                delete deletNode;
+                return;
+                //pointers == good
+            
+            }
         else
         {
             TreePtr childNode;
@@ -107,63 +140,66 @@ void BinaryTree::remove(int Value)
             if (parentNode->getRight() == deletNode)
             {
                 parentNode->setRight(childNode);
+                childNode->setParent(parentNode);
                 delete deletNode;
+                return;
+                //ptr == good
             }
             else
             {
                 parentNode->setLeft(childNode);
+                childNode->setParent(parentNode);
                 delete deletNode;
+                return;
+                //ptr == good
             }
 
         }
-
-        
-    }
-
-    //2 childeren case
-    if (deletNode->getLeft() != nullptr && deletNode->getRight() != nullptr)
-    {
-        TreePtr searchparent;
-        searchNode = deletNode->getRight();
-        while (searchNode->hasLeft() == true)
-        {
-            searchNode = searchNode->getLeft();
         }
+    
 
-        deletNode->setData(searchNode->getData());
-        //deal with the child node if there is one
-        if (searchNode->hasRight() == true)
+        //2 childeren case
+        if (deletNode->getLeft() != nullptr && deletNode->getRight() != nullptr)
         {
-            TreePtr childNode = searchNode->getRight();
-            //find out where the child of deletNode is
-
-            //which side of parent is delet on
-            if (searchparent->getRight() == deletNode)
+        
+            searchNode = deletNode->getRight();
+            TreePtr searchparent = searchNode->getParent();
+            while (searchNode->hasLeft() == true)
             {
-                searchparent->setRight(childNode);
-                delete searchNode;
+                searchNode = searchNode->getLeft();
+            }
+
+            deletNode->setData(searchNode->getData());
+            //deal with the child node if there is one
+            if (searchNode->hasRight() == true)
+            {
+                TreePtr childNode = searchNode->getRight();
+                //find out where the child of deletNode is
+
+                //which side of parent is delet on
+                if (searchparent->getRight() == deletNode)
+                {
+                    searchparent->setRight(childNode);
+                    delete searchNode;
+                    return;
+                }
+                else
+                {
+                    searchparent->setLeft(childNode);
+                    delete searchNode;
+                    return;
+                }
             }
             else
             {
-                searchparent->setLeft(childNode);
+                searchparent = searchNode->getParent();
+                (searchparent->getLeft() == searchNode) ? (searchparent->setLeft(nullptr)) : (searchparent->setRight(nullptr));
                 delete searchNode;
+                return;
             }
+
         }
-        else
-        {
-            searchparent = searchNode->getParent();
-            (searchparent->getLeft() == searchNode) ? (searchparent->setLeft(nullptr)) : (searchparent->setRight(nullptr));
-            delete searchNode;
-        }
-        //deleting the minimum
-
-       
-
-        
-
-     
     }
-
 }
 
 TreeNode * BinaryTree::find(int Value)
