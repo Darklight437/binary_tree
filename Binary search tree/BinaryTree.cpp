@@ -67,7 +67,7 @@ void BinaryTree::remove(int Value)
 {
     TreePtr parentNode;
     TreePtr deletNode;
-    //TreePtr searchNode;
+    TreePtr searchNode;
     findNode(Value, deletNode, parentNode);
     //no child case
     if (deletNode->getRight() == nullptr && deletNode-> getLeft() == nullptr)
@@ -114,10 +114,45 @@ void BinaryTree::remove(int Value)
     //2 childeren case
     if (deletNode->getLeft() != nullptr && deletNode->getRight() != nullptr)
     {
-        //TODO
-        //do that whole iterator thing to find the lowest right hand node if there is one
-        //right hand node's left branch until no more left branches (for looped)
-        //
+        TreePtr searchparent;
+        searchNode = deletNode->getRight();
+        while (searchNode->hasLeft() == true)
+        {
+            searchNode = searchNode->getLeft();
+        }
+
+        deletNode->setData(searchNode->getData());
+        //deal with the child node if there is one
+        if (searchNode->hasRight() == true)
+        {
+            TreePtr childNode = searchNode->getRight();
+            //find out where the child of deletNode is
+
+            //which side of parent is delet on
+            if (searchparent->getRight() == deletNode)
+            {
+                searchparent->setRight(childNode);
+                delete searchNode;
+            }
+            else
+            {
+                searchparent->setLeft(childNode);
+                delete searchNode;
+            }
+        }
+        else
+        {
+            searchparent = searchNode->getParent();
+            (searchparent->getLeft() == searchNode) ? (searchparent->setLeft(nullptr)) : (searchparent->setRight(nullptr));
+            delete searchNode;
+        }
+        //deleting the minimum
+
+       
+
+        
+
+     
     }
 
 }
